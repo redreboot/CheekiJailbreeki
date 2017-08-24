@@ -34,3 +34,4 @@ Add the offsets for iPhone 6 on 10.3.1 to speed up the progress.
 - Karl Marx and Friedrich Engels, for creating the roots of communism.
 - Boris Slav, for his great tutorials and videos.
 - Vladimir Putin, for being a b0ss.
+- Mila432, for adding more offsets to the exploit, thanks [Mila432](http://github.com/mila432/).
