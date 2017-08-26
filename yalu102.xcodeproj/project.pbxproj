@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D22B5CA1F5221DB00903AD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D22B5C91F5221DB00903AD4 /* Main.storyboard */; };
+		1D22B5CC1F5225C700903AD4 /* pocs in Resources */ = {isa = PBXBuildFile; fileRef = 1D22B5CB1F5225C700903AD4 /* pocs */; };
 		1D7579B01F4F2FA000408C5A /* apple_ave_pwn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7579AD1F4F2FA000408C5A /* apple_ave_pwn.m */; };
 		1D7579B11F4F2FA000408C5A /* apple_ave_utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7579AF1F4F2FA000408C5A /* apple_ave_utils.m */; };
 		1D7579B81F4F2FB200408C5A /* devicesupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7579B51F4F2FB200408C5A /* devicesupport.m */; };
@@ -62,6 +63,7 @@
 
 /* Begin PBXFileReference section */
 		1D22B5C91F5221DB00903AD4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		1D22B5CB1F5225C700903AD4 /* pocs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = pocs; sourceTree = "<group>"; };
 		1D7579AC1F4F2FA000408C5A /* apple_ave_pwn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apple_ave_pwn.h; sourceTree = "<group>"; };
 		1D7579AD1F4F2FA000408C5A /* apple_ave_pwn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = apple_ave_pwn.m; sourceTree = "<group>"; };
 		1D7579AE1F4F2FA000408C5A /* apple_ave_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apple_ave_utils.h; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		EA9900E51E1E9F060056FEBD /* yalu102 */ = {
 			isa = PBXGroup;
 			children = (
+				1D22B5CB1F5225C700903AD4 /* pocs */,
 				EAA7F7C61E3EE4AF00BE3C64 /* dropbear.plist */,
 				EA9901031E219C210056FEBD /* offsets.h */,
 				1D7579BB1F4F2FC700408C5A /* offsets.m */,
@@ -312,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA99010A1E21A04C0056FEBD /* tar in Resources */,
+				1D22B5CC1F5225C700903AD4 /* pocs in Resources */,
 				EA99010C1E21A0520056FEBD /* launchctl in Resources */,
 				EA9901061E219FF10056FEBD /* bootstrap.tar in Resources */,
 				EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */,
