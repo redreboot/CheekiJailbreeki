@@ -357,7 +357,7 @@ void* amfid_exception_handler(void* arg){
     
     // x2 is an outptr:
     //Need & perhaps
-    remote_write(task_port, old_state.__x[2], &result_dictionary, sizeof(result_dictionary));
+    remote_write(task_port, old_state.__x[2], result_dictionary, sizeof(result_dictionary));
     
     // return:
     new_state.__pc = old_state.__lr;

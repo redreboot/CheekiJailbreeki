@@ -70,7 +70,7 @@ xpc_checkin(
     printf("w00t message send failed: %s\n", mach_error_string(err));
     exit(EXIT_FAILURE);
   } else {
-    printf("sent xpc w00t message\n");
+    printf("sent some slavs to do hardbass dance battle. (xpc_w00t).\n");
   }
 
   return 1;

