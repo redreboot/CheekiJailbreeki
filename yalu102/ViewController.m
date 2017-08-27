@@ -5,7 +5,7 @@
 //  Created by qwertyoruiop on 05/01/2017.
 //  Copyright © 2017 kimjongcracks. All rights reserved.
 //
-
+#import <AVFoundation/AVFoundation.h>
 #import "offsets.h"
 #import "ViewController.h"
 #include "log.h"
@@ -30,7 +30,7 @@
 #define KERNEL_MAGIC 							(0xfeedfacf)
 static
 void print_welcome_message() {
-    logMsg("Hello Cheeki Breeki IV DAMKE.\nLet's jailbreak iOS 10.2.1 - 10.3.1.\n");
+    logMsg("А ну, чики брики и в дамки!\nLet's jailbreak iOS 10.2.1 - 10.3.1.\n");
     logMsg("Credit goes to: ");
     logMsg("- Adam Donenfeld (@doadam) for heap info leak, kernel base leak, type confusion vuln and exploit.");
     logMsg("- Ian Beer for his great Tri Poloski eploit (Tripple fetch)");
@@ -41,7 +41,6 @@ void print_welcome_message() {
     logMsg("");
     logMsg("Created by: Sem Voigtlander on behalve of Coffeebreakerz.\n");
 }
-
 
 
 /*
@@ -183,6 +182,7 @@ NSArray* getBundlePocs() {
 @interface ViewController()
 
 - (IBAction)kys:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *button;
 
 @end
 
@@ -201,7 +201,7 @@ NSArray* bundle_pocs;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void){
         dispatch_async(dispatch_get_main_queue(), ^{
 
-            self.kys.enabled = true;
+            _button.enabled = true;
 
         });
     });
@@ -222,14 +222,26 @@ NSArray* bundle_pocs;
 }
 
 
+
 - (void)dealloc {
-    [_kys release];
+    [_button release];
     [super dealloc];
 }
 - (IBAction)kys:(id)sender {
-    dispatch_async(dispatch_get_main_queue(),^{
-        int success = do_exploit();
-        if(success == 0) {
+    [_button setEnabled:false];
+    [_button setTitle:@"A NU CHEEKI BREEKI" forState:UIControlStateDisabled];
+    dispatch_async(dispatch_get_main_queue(), ^{
+               NSError *e;
+        NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/cheekibreeki.mp3", [[NSBundle mainBundle] resourcePath]]];
+        _player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&e];
+        [_player prepareToPlay];
+        [_player play];
+        logMsg("Playing some slav musik.");
+
+    });
+
+    dispatch_after(DISPATCH_TIME_NOW+4,dispatch_get_main_queue(),^{
+        if(do_exploit() == 0) {
             kern_return_t ret = KERN_SUCCESS;
             void * kernel_base = NULL;
             void * kernel_spray_address = NULL;
@@ -244,6 +256,7 @@ NSArray* bundle_pocs;
             }
 
             ret = initialize_iokit_connections();
+
             if (KERN_SUCCESS != ret)
             {
                 logMsg("Error initializing IOKit connections!");

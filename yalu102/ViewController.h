@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-@property (retain, nonatomic) IBOutlet UIButton *kys;
-
+@interface ViewController : UIViewController <AVAudioPlayerDelegate>
+@property (retain) AVAudioPlayer *player;
 - (void)logMsg:(NSString*)msg;
-
 @end
 

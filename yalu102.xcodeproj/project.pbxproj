@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D10ACD81F52FC5200982203 /* cheekibreeki.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1D10ACD71F52FC5200982203 /* cheekibreeki.mp3 */; };
 		1D22B5CA1F5221DB00903AD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D22B5C91F5221DB00903AD4 /* Main.storyboard */; };
 		1D22B5CC1F5225C700903AD4 /* pocs in Resources */ = {isa = PBXBuildFile; fileRef = 1D22B5CB1F5225C700903AD4 /* pocs */; };
 		1D7579B01F4F2FA000408C5A /* apple_ave_pwn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7579AD1F4F2FA000408C5A /* apple_ave_pwn.m */; };
@@ -62,6 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D10ACD71F52FC5200982203 /* cheekibreeki.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cheekibreeki.mp3; sourceTree = "<group>"; };
 		1D22B5C91F5221DB00903AD4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1D22B5CB1F5225C700903AD4 /* pocs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = pocs; sourceTree = "<group>"; };
 		1D7579AC1F4F2FA000408C5A /* apple_ave_pwn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apple_ave_pwn.h; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				1D22B5C91F5221DB00903AD4 /* Main.storyboard */,
 				EA9900F41E1E9F060056FEBD /* LaunchScreen.storyboard */,
 				EA9900F71E1E9F060056FEBD /* Info.plist */,
+				1D10ACD71F52FC5200982203 /* cheekibreeki.mp3 */,
 				EA9901051E219FF10056FEBD /* bootstrap.tar */,
 				EA9901091E21A04C0056FEBD /* tar */,
 				EA99010B1E21A0520056FEBD /* launchctl */,
@@ -317,6 +320,7 @@
 				EA99010A1E21A04C0056FEBD /* tar in Resources */,
 				1D22B5CC1F5225C700903AD4 /* pocs in Resources */,
 				EA99010C1E21A0520056FEBD /* launchctl in Resources */,
+				1D10ACD81F52FC5200982203 /* cheekibreeki.mp3 in Resources */,
 				EA9901061E219FF10056FEBD /* bootstrap.tar in Resources */,
 				EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */,
 				EAA7F7C71E3EE4AF00BE3C64 /* dropbear.plist in Resources */,

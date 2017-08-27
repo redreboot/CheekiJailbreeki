@@ -356,6 +356,7 @@ void* amfid_exception_handler(void* arg){
     //new_state.__pc = correct_pc;
     
     // x2 is an outptr:
+    //Need & perhaps
     remote_write(task_port, old_state.__x[2], &result_dictionary, sizeof(result_dictionary));
     
     // return:
@@ -525,10 +526,10 @@ void patch_amfid(mach_port_t amfid_task_port)
   // find that address in amfid's __la_symbol_ptr segment
   // it won't be too far in:
   uint64_t buf_size = 0x8000;
-  uint8_t* buf = malloc(buf_size);
+  uint8_t* buf = malloc((unsigned long)buf_size);
   
   remote_read_overwrite(amfid_task_port, amfid_load_address, (uint64_t)buf, buf_size);
-  uint8_t* found_at = memmem(buf, buf_size, &sym, sizeof(sym));
+  uint8_t* found_at = memmem(buf, (size_t)buf_size, &sym, sizeof(sym));
   if (found_at == NULL){
     printf("unable to find MISValidateSignatureAndCopyInfo in __la_symbol_ptr\n");
     return;

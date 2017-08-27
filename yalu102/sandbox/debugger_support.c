@@ -65,7 +65,7 @@ test_injection(mach_port_t task_port, mach_port_t installd_task_port)
 
   // should we add the sigs first?
   
-  if (remote_mapping == MAP_FAILED) {
+  if (remote_mapping == (uint64_t)MAP_FAILED) {
     printf("remote mmap failed\n");
   } else {
     printf("remote mmap success! 0x%llx\n", remote_mapping);

